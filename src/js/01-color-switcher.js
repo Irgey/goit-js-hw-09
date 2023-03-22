@@ -4,7 +4,7 @@ const refs = {
   stopBtn: document.querySelector('[data-stop'),
   body: document.querySelector('body'),
 };
-// let intervalId = null;
+let intervalId = null;
 
 refs.stopBtn.setAttribute('disabled', 'true');
 console.dir(refs.startBtn);
