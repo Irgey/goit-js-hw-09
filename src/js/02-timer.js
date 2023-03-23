@@ -7,6 +7,7 @@ const refs = {
   minutesDiv: document.querySelector('[data-minutes]'),
   secondsDiv: document.querySelector('[data-seconds]'),
   timer: document.querySelector('.timer'),
+  body: document.querySelector('body'),
 };
 
 const options = {
@@ -54,15 +55,18 @@ function onBtnClick() {
     const now = new Date();
     const diff = calendar.selectedDates[0] - now;
     if (diff <= 0) {
+      refs.body.classList.add('ua-theme');
       refs.timer.insertAdjacentHTML(
         'afterend',
-        `<iframe width="560" height="315" src="https://www.youtube.com/embed/qzbtdclsJXw?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+        '<iframe width="560" height="315" src="https://www.youtube.com/embed/xDeQVaoTvJM?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+        // `<iframe width="560" height="315" src="https://www.youtube.com/embed/qzbtdclsJXw?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
       );
       refs.videoPlayer = document.querySelector('iframe');
       console.log(refs.videoPlayer);
-      setTimeout(onVideohasEnded, 14000);
+      setTimeout(onVideohasEnded, 115000);
       function onVideohasEnded() {
         refs.videoPlayer.remove();
+        refs.body.classList.remove('ua-theme');
       }
       clearInterval(intervalId);
       return;
