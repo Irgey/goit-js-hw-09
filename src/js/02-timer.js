@@ -6,6 +6,7 @@ const refs = {
   hoursDiv: document.querySelector('[data-hours]'),
   minutesDiv: document.querySelector('[data-minutes]'),
   secondsDiv: document.querySelector('[data-seconds]'),
+  timer: document.querySelector('.timer'),
 };
 
 const options = {
@@ -46,21 +47,31 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
 refs.startBtn.addEventListener('click', onBtnClick);
 
 function onBtnClick() {
-  setInterval(() => {
+  const intervalId = setInterval(() => {
     const now = new Date();
     const diff = calendar.selectedDates[0] - now;
+    if (diff <= 0) {
+      refs.timer.insertAdjacentHTML(
+        'afterend',
+        `<iframe width="560" height="315" src="https://www.youtube.com/embed/qzbtdclsJXw?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+      );
+      refs.videoPlayer = document.querySelector('iframe');
+      console.log(refs.videoPlayer);
+      setTimeout(onVideohasEnded, 14000);
+      function onVideohasEnded() {
+        refs.videoPlayer.remove();
+      }
+      clearInterval(intervalId);
+      return;
+    }
     const timeLeft = convertMs(diff);
 
-    refs.daysDiv.textContent = timeLeft.days;
-    refs.hoursDiv.textContent = timeLeft.hours;
-    refs.minutesDiv.textContent = timeLeft.minutes;
-    refs.secondsDiv.textContent = timeLeft.seconds;
+    refs.daysDiv.textContent = timeLeft.days.toString().padStart(2, 0);
+    refs.hoursDiv.textContent = timeLeft.hours.toString().padStart(2, 0);
+    refs.minutesDiv.textContent = timeLeft.minutes.toString().padStart(2, 0);
+    refs.secondsDiv.textContent = timeLeft.seconds.toString().padStart(2, 0);
   }, 1000);
 }
