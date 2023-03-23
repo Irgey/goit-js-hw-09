@@ -56,8 +56,8 @@ function onBtnClick() {
   setInterval(() => {
     const now = new Date();
     const diff = calendar.selectedDates[0] - now;
-
     const timeLeft = convertMs(diff);
+
     refs.daysDiv.textContent = timeLeft.days;
     refs.hoursDiv.textContent = timeLeft.hours;
     refs.minutesDiv.textContent = timeLeft.minutes;
