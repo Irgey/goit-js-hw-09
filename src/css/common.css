@@ -36,3 +36,10 @@ img {
   background-image: linear-gradient(180deg, #005bbb 50%, #ffd500 50%);
   height: 100vh;
 }
+.extra {
+  width: min-content;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
