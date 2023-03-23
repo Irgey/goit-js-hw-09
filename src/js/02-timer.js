@@ -55,12 +55,12 @@ function onBtnClick() {
     const now = new Date();
     const diff = calendar.selectedDates[0] - now;
     if (diff <= 0) {
-      refs.body.classList.add('ua-theme');
       refs.timer.insertAdjacentHTML(
         'afterend',
         '<div class = "extra"><h1>The time has come!</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/xDeQVaoTvJM?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>'
         // `<iframe width="560" height="315" src="https://www.youtube.com/embed/qzbtdclsJXw?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
       );
+      refs.body.classList.add('ua-theme');
       refs.extra = document.querySelector('.extra');
       console.log(refs.videoPlayer);
       setTimeout(onVideohasEnded, 115000);
